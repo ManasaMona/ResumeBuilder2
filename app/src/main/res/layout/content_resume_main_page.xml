@@ -1,0 +1,162 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:padding="@dimen/activity_margin"
+    tools:context="com.example.manasaa.resumebuilder.Activity.ResumeMainPage"
+    tools:showIn="@layout/app_bar_resume_main_page"
+    android:fillViewport="true" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="10dip" >
+
+        <ListView
+            android:id="@+id/profileHeaderListView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+        </ListView>
+        <Button
+            android:id="@+id/profileEditButton"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:background="@drawable/ic_create_black_24dp"
+            android:layout_gravity="right" />
+        <LinearLayout
+            android:id="@+id/summaryLinearLayout"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="@dimen/activity_horizontal_margin">
+            <TextView
+                android:textSize="@dimen/fontSize"
+                android:layout_weight="1"
+                android:textStyle="bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dip"
+                android:text="@string/summary1" />
+            <!--summary-->
+            <ImageView
+                android:layout_marginTop="10dip"
+                android:id="@+id/summary_editButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_create_black_24dp"/>
+        </LinearLayout>
+
+        <ListView
+            android:id="@+id/summary_listView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <!--android:layout_marginTop="">-->
+        </ListView>
+
+        <android.support.v7.widget.CardView
+            xmlns:card_view="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/card_view1"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            card_view:cardCornerRadius="4dp">
+        <LinearLayout
+            android:id="@+id/projectLinearLayout"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/activity_horizontal_margin">
+
+            <TextView
+                android:textSize="@dimen/fontSize"
+                android:textStyle="bold"
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/projects" />
+            <ImageView
+                android:layout_weight="1"
+                android:id="@+id/projects_addButton"
+                android:layout_width="40dp"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_add_circle_black_24dp"/>
+        </LinearLayout>
+        </android.support.v7.widget.CardView>
+        <ListView
+            android:id="@+id/ProjectslistView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#ADD8E6" >
+        </ListView>
+
+        <android.support.v7.widget.CardView
+        xmlns:card_view="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/card_view"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        card_view:cardCornerRadius="4dp">
+<LinearLayout
+    android:id="@+id/educationLinearLayout"
+    android:padding="@dimen/activity_horizontal_margin"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <TextView
+        android:textSize="@dimen/fontSize"
+        android:textStyle="bold"
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/education" />
+    <ImageView
+        android:layout_weight="1"
+        android:id="@+id/education_addButton"
+        android:layout_width="40dp"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_add_circle_black_24dp"/>
+</LinearLayout>
+        </android.support.v7.widget.CardView>
+        <ListView
+            android:id="@+id/educationListView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#ADD8E6" >
+        </ListView>
+        <android.support.v7.widget.CardView
+            xmlns:card_view="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/card_view2"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            card_view:cardCornerRadius="4dp">
+        <LinearLayout
+            android:id="@+id/interestsLinearLayout"
+            android:padding="@dimen/activity_horizontal_margin"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:textSize="@dimen/fontSize"
+                android:textStyle="bold"
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/interests" />
+            <ImageView
+                android:layout_weight="1"
+                android:id="@+id/interests_addButton"
+                android:layout_width="40dp"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_add_circle_black_24dp"/>
+        </LinearLayout>
+    </android.support.v7.widget.CardView>
+        <ListView
+            android:id="@+id/interestsListView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#ADD8E6" >
+        </ListView>
+    </LinearLayout>
+
+</ScrollView>
