@@ -2,10 +2,9 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="15dp">
-
+    android:padding="@dimen/padding">
     <TextView
-        android:text="Institute : "
+        android:text="@string/institute"
         android:textSize="@dimen/fontSize"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
@@ -17,7 +16,7 @@
         android:focusable="true"
         />
     <TextView
-        android:text="Course : "
+        android:text="@string/course"
         android:textSize="@dimen/fontSize"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
@@ -28,7 +27,7 @@
         android:focusable="true"
         android:maxLines="2"/>
     <TextView
-        android:text="Year : "
+        android:text="@string/year"
         android:textSize="@dimen/fontSize"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />

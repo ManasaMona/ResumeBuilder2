@@ -13,8 +13,7 @@
         layout="@layout/app_bar_resume_main_page"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
-
-    //Drawer Layout
+    <!--Drawer Layout-->
     <android.support.design.widget.NavigationView
         android:id="@+id/nav_view"
         android:layout_width="wrap_content"
@@ -23,7 +22,4 @@
         android:fitsSystemWindows="true"
         app:headerLayout="@layout/nav_header_resume_main_page"
         app:menu="@menu/activity_resume_main_page_drawer" />
-
-
-
 </android.support.v4.widget.DrawerLayout>

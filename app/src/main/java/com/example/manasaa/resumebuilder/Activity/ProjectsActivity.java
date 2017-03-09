@@ -54,7 +54,6 @@ public class ProjectsActivity extends AppCompatActivity implements View.OnClickL
     }
 
     private void getDataFromDatabase() {
-        mDatabase =  new DatabaseHelper(this);
         mArrayOfprojects = new ArrayList<Project>();
         mArrayOfprojects = mDatabase.getProjectsByUserId(USERID);
     }
@@ -108,8 +107,10 @@ public class ProjectsActivity extends AppCompatActivity implements View.OnClickL
 
     @Override
     protected void onResume() {
+        mDatabase =  new DatabaseHelper(this);
         getDataFromDatabase();
         setDataInAdapter();
+        mDatabase.close();
         super.onResume();
     }
 }

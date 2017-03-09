@@ -3,6 +3,7 @@ package com.example.manasaa.resumebuilder.Activity;
 import java.lang.reflect.Field;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -41,6 +42,8 @@ public class AboutActivity extends AppCompatActivity implements View.OnClickList
                     SharedPreferences.Editor editor = preferences.edit();
                     editor.clear();
                     editor.commit();
+                    Intent intentToLoginScreen = new Intent(AboutActivity.this, MainActivity.class);
+                    startActivity(intentToLoginScreen);
                     finish();
             }
     }

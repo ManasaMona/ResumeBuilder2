@@ -21,6 +21,7 @@ import com.facebook.FacebookException;
 import com.facebook.FacebookSdk;
 import com.facebook.GraphRequest;
 import com.facebook.GraphResponse;
+import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
 import com.google.android.gms.auth.api.Auth;
@@ -64,18 +65,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         session = new SessionManager(getApplicationContext());   // Session class instance
 
         Log.d(TAG, session.isLoggedIn() + "called session is logged in");
-        if (session.isLoggedIn()) {
-            session.checkLogin();
-        }
+
 
         mTitle = (TextView) findViewById(R.id.mainPagetitle); //Custom Font for title
         Typeface face = Typeface.createFromAsset(getAssets(), "fontStyles/font1.ttf");
         mTitle.setTypeface(face);
 
-
         mSignInButton_google = (Button) findViewById(R.id.google_signin_button); //Google SignIn
         mSignInButton_google.setOnClickListener(this);
-
 
         callbackManager = CallbackManager.Factory.create();//facebookSign in
         loginButton = (LoginButton) findViewById(R.id.login_button);
@@ -89,9 +86,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         int id = v.getId();
         switch (id) {
             case R.id.google_signin_button:
-                                            if (mGoogleApiClient == null) {
+
                                                 signInwithGoogle();
-                                            }
+
                                             break;
             case R.id.login_button:
                                         signInwithFacebook();
@@ -143,6 +140,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     parameters.putString("fields", "id,name,email,gender, birthday, picture.type(large)");
                     request.setParameters(parameters);
                     request.executeAsync();
+
+            LoginManager.getInstance().logOut();
+
+
         }
         @Override
         public void onCancel() {
@@ -195,8 +196,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             String emailId = acct.getEmail();
             String profileURL = acct.getPhotoUrl() + "";
             Log.d(TAG, userName + emailId + profileURL);
-            // Session Manager
-            session.createLoginSession(userName, emailId, profileURL);
+            session.createLoginSession(userName, emailId, profileURL); // Session Manager
+            Auth.GoogleSignInApi.signOut(mGoogleApiClient);
             mGoogleApiClient.disconnect();
             mGoogleApiClient=null;
         } else {
@@ -205,9 +206,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     @Override
-    protected void onResume() {
+    protected void onResume() {Log.d(TAG, "called On REsume()");
         super.onResume();
-        Log.d(TAG, "called On REsume()");
         if (mGoogleApiClient != null && mGoogleApiClient.isConnected()) {
             Log.d(TAG, "called connection true mGoogleApiClient!=null && mGoogleApiClient.isConnected()");
         } else {
@@ -216,6 +216,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Log.d(TAG, session.isLoggedIn() + " called session.isLogged in value");
         if (session.isLoggedIn()) {
             session.checkLogin();
+            finish();
+
         }
     }
     @Override

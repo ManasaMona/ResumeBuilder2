@@ -40,5 +40,17 @@
     <string name="education">EDUCATION</string>
     <string name="projects">PROJECTS</string>
     <string name="summary1">SUMMARY</string>
+    <string name="years_of_experience">Years of Experience :</string>
+    <string name="email">Email :</string>
+    <string name="name1">Name :</string>
+    <string name="about">ABOUT</string>
+    <string name="sdk_version">SDK Version :</string>
+    <string name="logout">LOGOUT</string>
+    <string name="edit">EDIT</string>
+    <string name="institute">Institute :</string>
+    <string name="course">Course :</string>
+    <string name="year">Year :</string>
+    <string name="interest">Interest :</string>
+    <string name="android_studio">Android Studio</string>
 
 </resources>

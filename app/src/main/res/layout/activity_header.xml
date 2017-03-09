@@ -17,7 +17,7 @@
        android:paddingTop="@dimen/nav_header_vertical_spacing"/>
     <TextView
         android:id="@+id/labelName"
-        android:text="Name : "
+        android:text="@string/name1"
         android:layout_below="@+id/profileImage"
         android:textSize="20sp"
         android:layout_width="wrap_content"
@@ -32,7 +32,7 @@
 
     <TextView
         android:id="@+id/labelEmailId"
-        android:text="Email : "
+        android:text="@string/email"
         android:layout_below="@+id/labelName"
         android:paddingTop="10dp"
         android:layout_width="wrap_content"
@@ -48,7 +48,7 @@
         android:textSize="20sp"/>
     <TextView
         android:id="@+id/labelExperience"
-        android:text="Years of Experience : "
+        android:text="@string/years_of_experience"
         android:layout_below="@+id/labelEmailId"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

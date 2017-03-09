@@ -3,19 +3,19 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="wrap_content">
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:id="@+id/project_title"
-        android:textSize="@dimen/fontSize"/>
-    <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textSize="@dimen/fontSize"/>
+    <TextView
         android:id="@+id/project_role"
-        android:textSize="@dimen/fontSize"/>
-    <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textSize="@dimen/fontSize"/>
+    <TextView
         android:id="@+id/project_summary"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:textSize="@dimen/fontSize"/>
 
 </LinearLayout>

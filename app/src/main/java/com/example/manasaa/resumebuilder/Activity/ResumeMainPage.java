@@ -69,7 +69,7 @@ public class ResumeMainPage extends AppCompatActivity implements NavigationView.
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        mDatabase = new DatabaseHelper(getBaseContext());
+
 
         //SharedPreferences
         SharedPreferences shared = getSharedPreferences(PREF_NAME, MODE_PRIVATE);
@@ -87,15 +87,7 @@ public class ResumeMainPage extends AppCompatActivity implements NavigationView.
 
         Log.d(TAG,"called useridddd " + USER_ID);
 
-        displayResumeHeader();
 
-        displayResumeSummary();
-
-        displayResumeProjects();
-
-        displayResumeEducation();
-
-        displayResumeInterests();
     }
 
     private void displayNavigationDrawerLayout() {
@@ -229,16 +221,12 @@ public class ResumeMainPage extends AppCompatActivity implements NavigationView.
         }
     }
 
-
-
     private void doesUserExist() { Log.d(TAG,"called DoesUSerExcits{ ");
-
         SharedPreferences shared = getSharedPreferences(PREF_NAME, MODE_PRIVATE);
         user_name = shared.getString(KEY_NAME,"");
         user_emailId = shared.getString(KEY_EMAIL,"");
         user_profileImageUrl = shared.getString(KEY_PROFILEURL,"");
         Log.d(TAG,user_name + user_emailId+ user_profileImageUrl + "username email onStrt called ");
-
         int userID;
         DatabaseHelper database = new DatabaseHelper(this);
         int count= database.numberOfProfiles();
@@ -265,7 +253,6 @@ public class ResumeMainPage extends AppCompatActivity implements NavigationView.
         }
     }
 
-
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
@@ -278,31 +265,48 @@ public class ResumeMainPage extends AppCompatActivity implements NavigationView.
             Intent intent = new Intent(this, AboutActivity.class);
             startActivity(intent);
             finish();
+        } else if (id == R.id.nav_settings) {// Handle navigation view item clicks here.
+            Log.d(TAG," called  R.id.nav_about) ");
+            Intent intent = new Intent(this, AboutPreferenceActivity.class);
+            startActivity(intent);
+            finish();
         }
-
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
-
     @Override
     protected void onPostCreate( Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState); // Sync the toggle state after onRestoreInstanceState has occurred.//        drawer.syncState();
     }
-
     @Override
-    protected void onStart() {
+    protected void onStart() {          Log.d(TAG,"called onStart()");
+        mDatabase = new DatabaseHelper(getBaseContext());
+        displayResumeHeader();
+
+        displayResumeSummary();
+
+        displayResumeProjects();
+
+        displayResumeEducation();
+
+        displayResumeInterests();
+        mDatabase.close();
         super.onStart();
-        Log.d(TAG,"called onStart()");
-
     }
-
     @Override
-
     public void onBackPressed()
     {
        drawerLayout.closeDrawers();
         super.onBackPressed();
         finish();
+    }
+    @Override
+    protected void onStop() {           Log.d(TAG,"called onStop");
+        super.onStop();
+    }
+    @Override
+    protected void onPause() {          Log.d(TAG,"called onPause()");
+        super.onPause();
     }
 }

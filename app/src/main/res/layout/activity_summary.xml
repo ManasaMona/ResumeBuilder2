@@ -11,30 +11,26 @@
     tools:context="com.example.manasaa.resumebuilder.Activity.SummaryActivity">
 
     <TextView
-        android:textSize="@dimen/fontSize"
         android:id="@+id/summarytxtView"
+        android:textSize="@dimen/fontSize"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
     <EditText
-        android:lines="8"
         android:id="@+id/summaryEditTxt"
+        android:lines="8"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:focusable="true"/>
 
     <Button
+        android:id="@+id/summarySaveButton"
         android:background="#EA907D"
         android:textStyle="bold"
         android:layout_alignParentRight="true"
-        android:id="@+id/summarySaveButton"
         android:layout_below="@+id/summaryEditTxt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text = "EDIT" />
-
-
-
-
+        android:text = "@string/edit" />
 
 </RelativeLayout>

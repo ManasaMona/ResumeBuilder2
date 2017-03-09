@@ -51,7 +51,7 @@ public class EducationActivity extends AppCompatActivity implements View.OnClick
     }
 
     private void getEducationListFromDatabase() {     Log.d(TAG,"getEducationListFromDatabase() ");
-        mDatabase =  new DatabaseHelper(this);
+
         int numEdu = mDatabase.numberOfEducationDetails();Log.d(TAG, numEdu+ " called coount pros");
         mArrayOfEducationDetails = mDatabase.getEducationDetailsByUserId(USERID);
 
@@ -105,9 +105,11 @@ public class EducationActivity extends AppCompatActivity implements View.OnClick
 
     @Override
     protected void onResume() { Log.d(TAG,"called onResume");
+        mDatabase =  new DatabaseHelper(this);
         getEducationListFromDatabase();
         settingDataInAdapter();
         adapter_education.notifyDataSetChanged();
+        mDatabase.close();
         super.onResume();
     }
 

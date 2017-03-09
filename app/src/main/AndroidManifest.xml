@@ -82,6 +82,9 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".Activity.ResumeMainPage" />
         </activity>
+        <activity android:name=".Activity.AboutPreferenceActivity"
+            android:label="@string/about"/>
+
     </application>
 
 </manifest>

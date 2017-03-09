@@ -50,7 +50,7 @@ public class InterestsActivity extends AppCompatActivity implements View.OnClick
     }
 
     private void getDataFromDatabase() {
-        mDatabase =  new DatabaseHelper(this);
+
         mArrayOfInterests = new ArrayList<Interest>();
         int nuumPros = mDatabase.numberOfInterests();
         Log.d(TAG, nuumPros+ " called coount pros");
@@ -103,8 +103,16 @@ public class InterestsActivity extends AppCompatActivity implements View.OnClick
 
     @Override
     protected void onResume() {
+        mDatabase =  new DatabaseHelper(this);
         getDataFromDatabase();
         setDataInAdapter();
+        mDatabase.close();
         super.onResume();
+    }
+
+    @Override
+    protected void onStart() {
+        Log.d(TAG,"called on start");
+        super.onStart();
     }
 }

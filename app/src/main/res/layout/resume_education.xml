@@ -2,21 +2,19 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="wrap_content">
-
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:id="@+id/education_institute_name"
-        android:textSize="@dimen/fontSize"/>
-    <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textSize="@dimen/fontSize"/>
+    <TextView
         android:id="@+id/education_course_name"
-        android:textSize="@dimen/fontSize"/>
-    <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/education_years"
         android:textSize="@dimen/fontSize"/>
-
+    <TextView
+        android:id="@+id/education_years"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/fontSize"/>
 </LinearLayout>

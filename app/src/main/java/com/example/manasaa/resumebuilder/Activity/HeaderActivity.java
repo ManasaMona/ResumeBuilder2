@@ -82,7 +82,7 @@ public class HeaderActivity extends AppCompatActivity  implements  View.OnClickL
     }
 
     private void getDataFromDatabase() {
-        mDatabase = new DatabaseHelper(this);
+
         userObj = mDatabase.getUserDetailsByID(USERID);
     }
 
@@ -141,8 +141,10 @@ public class HeaderActivity extends AppCompatActivity  implements  View.OnClickL
 
     @Override
     protected void onResume() { Log.d(TAG,"called on Resume");
+        mDatabase = new DatabaseHelper(this);
         getDataFromDatabase();
         displayUserData();
+        mDatabase.close();
         super.onResume();
     }
 }

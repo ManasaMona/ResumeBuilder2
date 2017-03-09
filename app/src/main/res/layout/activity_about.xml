@@ -17,14 +17,14 @@
         android:layout_height="wrap_content"
         android:textStyle="bold"
         android:textSize="18dp"
-        android:text="ABOUT"/>
+        android:text="@string/about"/>
     <TextView
         android:id="@+id/labelVersion"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="15dp"
         android:layout_below="@id/labelAbout"
-        android:text=" SDK Version : "/>
+        android:text="@string/sdk_version"/>
     <TextView
         android:id="@+id/androidVersionTxtView"
         android:layout_width="wrap_content"
@@ -38,7 +38,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="18dp"
-        android:text="LOGOUT"/>
+        android:text="@string/logout"/>
 
 
 </RelativeLayout>

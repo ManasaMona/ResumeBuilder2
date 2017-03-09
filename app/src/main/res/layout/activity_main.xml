@@ -19,40 +19,12 @@
         android:textSize="@dimen/mainPageTitleSize"
         android:text="@string/title_resume_builder" />
 
-    <!--<com.google.android.gms.common.SignInButton-->
-        <!--android:id="@+id/sign_in_button_google"-->
-        <!--android:layout_centerInParent="true"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content" />-->
-
     <Button
         android:id="@+id/google_signin_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:text="@string/common_signin_button_text_long" />
-
-    <!--<Button-->
-        <!--android:id="@+id/facebook_signin_button"-->
-        <!--android:layout_below="@+id/google_signin_button"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_centerInParent="true"-->
-        <!--android:text="sign in with facebook" />-->
-
-    <!--&lt;!&ndash;<Button&ndash;&gt;-->
-        <!--android:id="@+id/details"-->
-        <!--android:text="Show details"-->
-        <!--android:layout_gravity="center"-->
-        <!--android:layout_width="200sp"-->
-        <!--android:layout_marginBottom="20dp"-->
-        <!--android:layout_height="wrap_content" />-->
-    <!--<Button-->
-        <!--android:id="@+id/share"-->
-        <!--android:text="Share"-->
-        <!--android:layout_gravity="center"-->
-        <!--android:layout_width="200sp"-->
-        <!--android:layout_height="wrap_content" />-->
 
     <com.facebook.login.widget.LoginButton
         android:id="@+id/login_button"

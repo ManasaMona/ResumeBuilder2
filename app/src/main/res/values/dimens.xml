@@ -15,5 +15,7 @@
     <dimen name="profile_height">75dp</dimen>
     <dimen name="mainPageTitleSize">35sp</dimen>
     <dimen name="fontSize">18sp</dimen>
+    <dimen name="paddingTop">10dp</dimen>
+    <dimen name="padding">15dp</dimen>
 
 </resources>
