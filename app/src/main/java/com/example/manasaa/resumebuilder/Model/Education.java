@@ -21,4 +21,39 @@ public class Education {
         course_name = course;
         this.year = year;
     }
+
+
+    public int getEducation_id() {
+        return education_id;
+    }
+
+    public void setEducation_id(int education_id) {
+        this.education_id = education_id;
+    }
+
+    public String getInstitute_name() {
+        return institute_name;
+    }
+
+    public void setInstitute_name(String institute_name) {
+        this.institute_name = institute_name;
+    }
+
+    public String getCourse_name() {
+        return course_name;
+    }
+
+    public void setCourse_name(String course_name) {
+        this.course_name = course_name;
+    }
+
+    public String getYear() {
+        return year;
+    }
+
+    public void setYear(String year) {
+        this.year = year;
+    }
+
+
 }

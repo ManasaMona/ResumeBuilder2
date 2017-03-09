@@ -13,6 +13,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.example.manasaa.resumebuilder.Database.DatabaseHelper;
 import com.example.manasaa.resumebuilder.Model.Project;
@@ -44,17 +45,18 @@ public class ProjectsActivity extends AppCompatActivity implements View.OnClickL
 
         projects_fab = (FloatingActionButton) findViewById(R.id.addFabProjects);
         projects_fab.setOnClickListener(this);
+    }
 
-        mDatabase =  new DatabaseHelper(this);
-
-        mArrayOfprojects = new ArrayList<Project>();
-        int nuumPros = mDatabase.numberOfProfiles();
-        Log.d(TAG, nuumPros+ " called coount pros");
-        mArrayOfprojects = mDatabase.getProjectsByUserId(USERID);
-
+    private void setDataInAdapter() {
         mProjectsListView = (ListView) findViewById(R.id.projects_listViewActivity);
         ViewHolderResumeProjects adapter_projects = new ViewHolderResumeProjects(this,mArrayOfprojects);
         mProjectsListView .setAdapter(adapter_projects);
+    }
+
+    private void getDataFromDatabase() {
+        mDatabase =  new DatabaseHelper(this);
+        mArrayOfprojects = new ArrayList<Project>();
+        mArrayOfprojects = mDatabase.getProjectsByUserId(USERID);
     }
 
     @Override
@@ -74,10 +76,10 @@ public class ProjectsActivity extends AppCompatActivity implements View.OnClickL
                                         Log.d(TAG, project_name+project_role+project_summary+ " called from dialog");
                                         if(project_name.length()!=0 && project_role.length()!=0 && project_summary.length()!=0) {
                                             saveToDatabase(USERID, project_name, project_role, project_summary);
+                                        }else{
+                                            Toast.makeText(this, "some fields are empty", Toast.LENGTH_LONG).show();
                                         }
-
-
-
+                                        onResume();
                                         dialog.dismiss();
                                         break;
         }
@@ -98,7 +100,6 @@ public class ProjectsActivity extends AppCompatActivity implements View.OnClickL
         projectRole_editTxt = (EditText) dialog.findViewById( R.id.pro_role );
         projectSummary_editTxt = (EditText) dialog.findViewById( R.id.pro_summary );
         projectSave = (Button) dialog.findViewById( R.id.pro_save_button );
-
         projectSave.setOnClickListener(this);
         dialog.show();
         Window window = dialog.getWindow();
@@ -107,6 +108,8 @@ public class ProjectsActivity extends AppCompatActivity implements View.OnClickL
 
     @Override
     protected void onResume() {
+        getDataFromDatabase();
+        setDataInAdapter();
         super.onResume();
     }
 }

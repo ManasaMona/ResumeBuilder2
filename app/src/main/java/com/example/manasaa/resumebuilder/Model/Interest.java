@@ -9,14 +9,11 @@ public class Interest {
     private String interestName;
 
     public Interest (){
-
     }
-
     public Interest(int user_id, String interestName) {
         this.user_id = user_id;
         this.interestName = interestName;
     }
-
     public int getUser_id() {
         return user_id;
     }

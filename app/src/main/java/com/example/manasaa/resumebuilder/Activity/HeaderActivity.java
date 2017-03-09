@@ -39,30 +39,35 @@ public class HeaderActivity extends AppCompatActivity  implements  View.OnClickL
     DatabaseHelper mDatabase;
     private int PICK_IMAGE_REQUEST = 1;
     private String profileURL;
+    UserDetails userObj;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_header);
 
-        mDatabase = new DatabaseHelper(this);
-
         USERID = getIntent().getIntExtra("USER_ID",0);
         Log.d(TAG,USERID + " user id called ");
-        UserDetails userObj = mDatabase.getUserDetailsByID(USERID);
+
 
         mNameTxtView = (TextView) findViewById(R.id.nameTxtView);
         mEmailTxtView = (TextView) findViewById(R.id.emailTxtView);
         mExperienceTxtView = (TextView) findViewById(R.id.experienceTxtView);
         mExperinceEditTxt = (EditText) findViewById(R.id.experienceEditTxt);
         mProfileImage = (ImageView) findViewById(R.id.profileImage);
-        mProfileImage.setOnClickListener(this);
-
         mFab = (FloatingActionButton) findViewById(R.id.editFab);
         mSaveButton = (Button) findViewById(R.id.expSaveButton);
-        mSaveButton.setOnClickListener(this);
-        mSaveButton.setVisibility(INVISIBLE);
 
+        mSaveButton.setVisibility(INVISIBLE);
+        mExperinceEditTxt.setVisibility(INVISIBLE);
+
+        mFab.setOnClickListener(this);
+        mSaveButton.setOnClickListener(this);
+        mProfileImage.setOnClickListener(this);
+
+    }
+
+    private void displayUserData() {
         mNameTxtView.setText(userObj.getUserName());
         mEmailTxtView.setText(userObj.getUserEmail());
         if(userObj.getUserExperience()!=0) {
@@ -74,9 +79,11 @@ public class HeaderActivity extends AppCompatActivity  implements  View.OnClickL
         Glide.with(this).load(userObj.getUserProfileLink()).crossFade().thumbnail(0.2f).bitmapTransform(new CircleTransform(this)).diskCacheStrategy(DiskCacheStrategy.ALL)
                 .into(mProfileImage);
 
-        mExperinceEditTxt.setVisibility(INVISIBLE);
-        mFab.setOnClickListener(this);
+    }
 
+    private void getDataFromDatabase() {
+        mDatabase = new DatabaseHelper(this);
+        userObj = mDatabase.getUserDetailsByID(USERID);
     }
 
     @Override
@@ -112,7 +119,6 @@ public class HeaderActivity extends AppCompatActivity  implements  View.OnClickL
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-
         if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK && data != null && data.getData() != null) {
             Uri uri = data.getData();
             profileURL = uri+"";
@@ -126,14 +132,17 @@ public class HeaderActivity extends AppCompatActivity  implements  View.OnClickL
         }
     }
 
-    private void updateToDatabase(int experience, int userid) {
-        Log.d(TAG,"called updateToDatabase(int experience, int userid)" );
+    private void updateToDatabase(int experience, int userid) {        Log.d(TAG,"called updateToDatabase(int experience, int userid)" );
         mDatabase.updateExperinceByUserId(experience, userid);
     }
-    private void updateToDatabase(String profileURL, int userid) {
-        Log.d(TAG,"called updateToDatabase(int experience, int userid)" );
+    private void updateToDatabase(String profileURL, int userid) {   Log.d(TAG,"called updateToDatabase(int experience, int userid)" );
         mDatabase.updateProfileURLByUserId(profileURL, userid);
     }
 
-
+    @Override
+    protected void onResume() { Log.d(TAG,"called on Resume");
+        getDataFromDatabase();
+        displayUserData();
+        super.onResume();
+    }
 }

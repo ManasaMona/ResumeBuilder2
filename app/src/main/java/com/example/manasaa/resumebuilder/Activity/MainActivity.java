@@ -171,6 +171,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(mGoogleApiClient);
         startActivityForResult(signInIntent, RC_SIGN_IN);
         mGoogleApiClient.disconnect();
+
     }
 
     @Override
@@ -197,6 +198,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             // Session Manager
             session.createLoginSession(userName, emailId, profileURL);
             mGoogleApiClient.disconnect();
+            mGoogleApiClient=null;
         } else {
             Toast.makeText(this,"google sign in not successfull ", Toast.LENGTH_LONG).show();
         }

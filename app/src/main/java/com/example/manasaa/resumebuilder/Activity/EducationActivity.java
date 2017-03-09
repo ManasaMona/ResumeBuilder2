@@ -1,8 +1,6 @@
 package com.example.manasaa.resumebuilder.Activity;
 
 import android.app.Dialog;
-import android.app.ListActivity;
-import android.content.Intent;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -13,16 +11,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ListView;
-
+import android.widget.Toast;
 import com.example.manasaa.resumebuilder.Database.DatabaseHelper;
 import com.example.manasaa.resumebuilder.Model.Education;
-import com.example.manasaa.resumebuilder.Model.Project;
-import com.example.manasaa.resumebuilder.Model.UserDetails;
 import com.example.manasaa.resumebuilder.R;
 import com.example.manasaa.resumebuilder.ViewHolder.ViewHolderResumeEducation;
-import com.example.manasaa.resumebuilder.ViewHolder.ViewHolderResumeProjects;
-import com.google.android.gms.common.data.DataBufferUtils;
-
 import java.util.ArrayList;
 
 public class EducationActivity extends AppCompatActivity implements View.OnClickListener {
@@ -34,7 +27,7 @@ public class EducationActivity extends AppCompatActivity implements View.OnClick
     private static Dialog dialog;
     ViewHolderResumeEducation adapter_education;
     ListView  mEducationDetailsListView;
-    ArrayList<Education> mArrayOfEducationDetails;
+    ArrayList<Education> mArrayOfEducationDetails = new ArrayList<Education>();;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         Log.d(TAG, "called onCREATE()");
@@ -47,16 +40,21 @@ public class EducationActivity extends AppCompatActivity implements View.OnClick
         education_fab = (FloatingActionButton) findViewById(R.id.addFabEducation);
         education_fab.setOnClickListener(this);
 
-        mDatabase =  new DatabaseHelper(this);
 
-        mArrayOfEducationDetails = new ArrayList<Education>();
-        int numEdu = mDatabase.numberOfEducationDetails();
-        Log.d(TAG, numEdu+ " called coount pros");
-        mArrayOfEducationDetails = mDatabase.getEducationDetailsByUserId(USERID);
+    }
 
+    private void settingDataInAdapter() {            Log.d(TAG,"called settingDataInAdapter() ");
         mEducationDetailsListView = (ListView) findViewById(R.id.education_listViewActivity);
         adapter_education = new ViewHolderResumeEducation(this,mArrayOfEducationDetails);
         mEducationDetailsListView .setAdapter(adapter_education);
+        adapter_education.notifyDataSetChanged();
+    }
+
+    private void getEducationListFromDatabase() {     Log.d(TAG,"getEducationListFromDatabase() ");
+        mDatabase =  new DatabaseHelper(this);
+        int numEdu = mDatabase.numberOfEducationDetails();Log.d(TAG, numEdu+ " called coount pros");
+        mArrayOfEducationDetails = mDatabase.getEducationDetailsByUserId(USERID);
+
     }
 
     @Override
@@ -73,9 +71,14 @@ public class EducationActivity extends AppCompatActivity implements View.OnClick
                 course= eduCourseName_editTxt.getText().toString();
                 year = eduYear_editTxt.getText().toString();
                 Log.d(TAG, name+course+year+ " called from dialog");
-                saveToDatabase(USERID,name,course,year);
-                adapter_education.notifyDataSetChanged();
-                dialog.dismiss();
+                if(name.length()!=0 && course.length()!=0 && year.length()!=0) {
+                    saveToDatabase(USERID, name, course, year);
+                    dialog.dismiss();
+                    onResume();
+                }
+                else{
+                    Toast.makeText(this, "Some fields are empty ", Toast.LENGTH_LONG).show();
+                }
                 break;
         }
     }
@@ -101,8 +104,20 @@ public class EducationActivity extends AppCompatActivity implements View.OnClick
     }
 
     @Override
-    protected void onResume() {
+    protected void onResume() { Log.d(TAG,"called onResume");
+        getEducationListFromDatabase();
+        settingDataInAdapter();
         adapter_education.notifyDataSetChanged();
         super.onResume();
+    }
+
+    @Override
+    protected void onPause() { Log.d(TAG,"called onPause() ");
+        super.onPause();
+    }
+
+    @Override
+    protected void onStart() {  Log.d(TAG,"called onStart() ");
+        super.onStart();
     }
 }

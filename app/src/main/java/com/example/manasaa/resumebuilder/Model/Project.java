@@ -20,4 +20,38 @@ public class Project {
         project_role=role;
         project_summary = summary;
     }
+
+    public int getProject_id() {
+        return project_id;
+    }
+
+    public void setProject_id(int project_id) {
+        this.project_id = project_id;
+    }
+
+    public String getProject_name() {
+        return project_name;
+    }
+
+    public void setProject_name(String project_name) {
+        this.project_name = project_name;
+    }
+
+    public String getProject_role() {
+        return project_role;
+    }
+
+    public void setProject_role(String project_role) {
+        this.project_role = project_role;
+    }
+
+    public String getProject_summary() {
+        return project_summary;
+    }
+
+    public void setProject_summary(String project_summary) {
+        this.project_summary = project_summary;
+    }
+
+
 }

@@ -22,23 +22,20 @@ public class ViewHolderResumeEducation extends ArrayAdapter<Education> {
         super(context, 0, educations);
     }
     public View getView(int position, View convertView, ViewGroup parent) {
-        // Get the data item for this position
-        Education education = getItem(position);
-        // Check if an existing view is being reused, otherwise inflate the view
-        if (convertView == null) {
+        Education education = getItem(position);  // Get the data item for this position
+        if (convertView == null) { // Check if an existing view is being reused, otherwise inflate the view
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.resume_education, parent, false);
         }
-        // Lookup view for data population
-        institute_nameTxtView =(TextView) convertView.findViewById(R.id.education_course_name);
+        institute_nameTxtView =(TextView) convertView.findViewById(R.id.education_course_name); // Lookup view for data population
         course_nameTxView =(TextView) convertView.findViewById(R.id.education_institute_name);
         year_txtView = (TextView) convertView.findViewById(R.id.education_years);
-        // Populate the data into the template view using the data object
-        institute_nameTxtView.setText("Institute : " +education.institute_name);
+
+        institute_nameTxtView.setText("Institute : " +education.institute_name);// Populate the data into the template view using the data object
         course_nameTxView.setText("Course : "+education.course_name);
         year_txtView.setText("Year : "+education.year);
-      // Return the completed view to render on screen
-        return convertView;
 
+        return convertView;
     }
+    
 
 }

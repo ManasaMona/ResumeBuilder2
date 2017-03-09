@@ -1,2 +1,0 @@
-# ResumeBuilder2
-resume

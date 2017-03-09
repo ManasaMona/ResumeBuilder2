@@ -32,6 +32,7 @@ import com.example.manasaa.resumebuilder.Model.UserDetails;
 import com.example.manasaa.resumebuilder.Other.CircleTransform;
 import com.example.manasaa.resumebuilder.Other.SessionManager;
 import com.example.manasaa.resumebuilder.R;
+import com.example.manasaa.resumebuilder.Utility.ListUtils;
 import com.example.manasaa.resumebuilder.ViewHolder.ViewHolderInterests;
 import com.example.manasaa.resumebuilder.ViewHolder.ViewHolderResumeEducation;
 import com.example.manasaa.resumebuilder.ViewHolder.ViewHolderResumeHeader;
@@ -228,29 +229,10 @@ public class ResumeMainPage extends AppCompatActivity implements NavigationView.
         }
     }
 
-    public static class ListUtils {
-        public static void setDynamicHeight(ListView mListView) {
-            ListAdapter mListAdapter = mListView.getAdapter();
-            if (mListAdapter == null) {
-                // when adapter is null
-                return;
-            }
-            int height = 0;
-            int desiredWidth = View.MeasureSpec.makeMeasureSpec(mListView.getWidth(), View.MeasureSpec.UNSPECIFIED);
-            for (int i = 0; i < mListAdapter.getCount(); i++) {
-                View listItem = mListAdapter.getView(i, null, mListView);
-                listItem.measure(desiredWidth, View.MeasureSpec.UNSPECIFIED);
-                height += listItem.getMeasuredHeight();
-            }
-            ViewGroup.LayoutParams params = mListView.getLayoutParams();
-            params.height = height + (mListView.getDividerHeight() * (mListAdapter.getCount() - 1));
-            mListView.setLayoutParams(params);
-            mListView.requestLayout();
-        }
-    }
 
-    private void doesUserExist() {
-        Log.d(TAG,"called DoesUSerExcits{ ");
+
+    private void doesUserExist() { Log.d(TAG,"called DoesUSerExcits{ ");
+
         SharedPreferences shared = getSharedPreferences(PREF_NAME, MODE_PRIVATE);
         user_name = shared.getString(KEY_NAME,"");
         user_emailId = shared.getString(KEY_EMAIL,"");
@@ -283,28 +265,6 @@ public class ResumeMainPage extends AppCompatActivity implements NavigationView.
         }
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.resume_main_page, menu);
-        return true;
-    }
-
-//    @Override
-//    public boolean onOptionsItemSelected(MenuItem item) {  // Handle action bar item clicks here. The action bar will// automatically handle clicks on the Home/Up button, so long// as you specify a parent activity in AndroidManifest.xml.
-//        int id = item.getItemId();
-//        //noinspection SimplifiableIfStatement
-//        if (id == R.id.action_settings) {
-//            Log.d(TAG, "called the top settings");
-//            SharedPreferences preferences =getSharedPreferences("LOGINPREF", Context.MODE_PRIVATE);
-//            SharedPreferences.Editor editor = preferences.edit();
-//            editor.clear();
-//            editor.commit();
-//            finish();
-//            return true;
-//        }
-//        return super.onOptionsItemSelected(item);
-//    }
 
     @SuppressWarnings("StatementWithEmptyBody")
     @Override

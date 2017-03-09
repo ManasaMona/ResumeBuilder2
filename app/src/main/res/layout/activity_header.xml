@@ -48,7 +48,7 @@
         android:textSize="20sp"/>
     <TextView
         android:id="@+id/labelExperience"
-        android:text="Experience : "
+        android:text="Years of Experience : "
         android:layout_below="@+id/labelEmailId"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

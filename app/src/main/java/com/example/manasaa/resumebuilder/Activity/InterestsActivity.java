@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.example.manasaa.resumebuilder.Database.DatabaseHelper;
 import com.example.manasaa.resumebuilder.Model.Interest;
@@ -40,17 +41,20 @@ public class InterestsActivity extends AppCompatActivity implements View.OnClick
 
         interests_fab = (FloatingActionButton) findViewById(R.id.addFabInterest);
         interests_fab.setOnClickListener(this);
+    }
 
+    private void setDataInAdapter() {
+        mInterestsListView = (ListView) findViewById(R.id.interests_listViewActivity);
+        ViewHolderInterests adapter_interests = new ViewHolderInterests(this,mArrayOfInterests);
+        mInterestsListView .setAdapter(adapter_interests);
+    }
+
+    private void getDataFromDatabase() {
         mDatabase =  new DatabaseHelper(this);
-
         mArrayOfInterests = new ArrayList<Interest>();
         int nuumPros = mDatabase.numberOfInterests();
         Log.d(TAG, nuumPros+ " called coount pros");
         mArrayOfInterests = mDatabase.getInterestsByUserId(USERID);
-
-        mInterestsListView = (ListView) findViewById(R.id.interests_listViewActivity);
-        ViewHolderInterests adapter_interests = new ViewHolderInterests(this,mArrayOfInterests);
-        mInterestsListView .setAdapter(adapter_interests);
     }
 
     @Override
@@ -64,9 +68,16 @@ public class InterestsActivity extends AppCompatActivity implements View.OnClick
                 Log.d(TAG,"called interst save button");
                 String interest;
                interest=interest_editTxt.getText().toString();
-                Log.d(TAG, interest+ " called from dialog");
-                saveToDatabase(USERID,interest);
+                if(interest.length()!=0) {
+                    Log.d(TAG, interest + " called from dialog");
+                    saveToDatabase(USERID, interest);
+                }
+                else{
+                    Toast.makeText(this, " Interest is empty", Toast.LENGTH_LONG).show();
+                }
+                onResume();
                 dialog.dismiss();
+
                 break;
         }
     }
@@ -92,7 +103,8 @@ public class InterestsActivity extends AppCompatActivity implements View.OnClick
 
     @Override
     protected void onResume() {
-        //adapter_interests.notifyDataSetChanged();
+        getDataFromDatabase();
+        setDataInAdapter();
         super.onResume();
     }
 }
