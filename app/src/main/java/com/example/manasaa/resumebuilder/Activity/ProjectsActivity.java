@@ -1,11 +1,9 @@
 package com.example.manasaa.resumebuilder.Activity;
 
 import android.app.Dialog;
-import android.app.ListActivity;
-import android.content.Intent;
+import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
@@ -17,10 +15,8 @@ import android.widget.Toast;
 
 import com.example.manasaa.resumebuilder.Database.DatabaseHelper;
 import com.example.manasaa.resumebuilder.Model.Project;
-import com.example.manasaa.resumebuilder.Model.UserDetails;
 import com.example.manasaa.resumebuilder.R;
 import com.example.manasaa.resumebuilder.ViewHolder.ViewHolderResumeProjects;
-import com.google.android.gms.common.data.DataBufferUtils;
 
 import java.util.ArrayList;
 
@@ -49,13 +45,14 @@ public class ProjectsActivity extends AppCompatActivity implements View.OnClickL
 
     private void setDataInAdapter() {
         mProjectsListView = (ListView) findViewById(R.id.projects_listViewActivity);
-        ViewHolderResumeProjects adapter_projects = new ViewHolderResumeProjects(this,mArrayOfprojects);
+        adapter_projects = new ViewHolderResumeProjects(this,mArrayOfprojects);
         mProjectsListView .setAdapter(adapter_projects);
     }
 
     private void getDataFromDatabase() {
         mArrayOfprojects = new ArrayList<Project>();
         mArrayOfprojects = mDatabase.getProjectsByUserId(USERID);
+        adapter_projects.updateListOfItems( mArrayOfprojects);
     }
 
     @Override
@@ -78,7 +75,6 @@ public class ProjectsActivity extends AppCompatActivity implements View.OnClickL
                                         }else{
                                             Toast.makeText(this, "some fields are empty", Toast.LENGTH_LONG).show();
                                         }
-                                        onResume();
                                         dialog.dismiss();
                                         break;
         }

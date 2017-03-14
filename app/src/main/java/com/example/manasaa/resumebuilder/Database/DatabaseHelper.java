@@ -20,6 +20,14 @@ import java.util.ArrayList;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
 
+    static DatabaseHelper instance;
+    public static DatabaseHelper getInstance(Context context){
+        if(instance==null){
+            instance = new DatabaseHelper(context);
+        }
+        return instance;
+    }
+
     private static final String TAG= "DatabaseHelper";
     private static final int DATABASE_VERSION = 1;// Database Version
     private static final String DATABASE_NAME = "resumeManager";// Database Name
@@ -100,6 +108,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
         this.context = context;
     }
+
+
 //    @Override
 //    public void onOpen(SQLiteDatabase db) {
 //        super.onOpen(db);

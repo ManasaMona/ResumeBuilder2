@@ -19,7 +19,7 @@ import com.example.manasaa.resumebuilder.ViewHolder.ViewHolderResumeEducation;
 import java.util.ArrayList;
 
 public class EducationActivity extends AppCompatActivity implements View.OnClickListener {
-    private static final String TAG = ProjectsActivity.class.getSimpleName();
+    private static final String TAG = EducationActivity.class.getSimpleName();
     private DatabaseHelper mDatabase;
     private static int USERID;
     private FloatingActionButton education_fab;

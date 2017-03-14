@@ -1,6 +1,5 @@
 package com.example.manasaa.resumebuilder.Activity;
 
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -11,14 +10,12 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -30,7 +27,6 @@ import com.example.manasaa.resumebuilder.Model.Interest;
 import com.example.manasaa.resumebuilder.Model.Project;
 import com.example.manasaa.resumebuilder.Model.UserDetails;
 import com.example.manasaa.resumebuilder.Other.CircleTransform;
-import com.example.manasaa.resumebuilder.Other.SessionManager;
 import com.example.manasaa.resumebuilder.R;
 import com.example.manasaa.resumebuilder.Utility.ListUtils;
 import com.example.manasaa.resumebuilder.ViewHolder.ViewHolderInterests;
@@ -264,12 +260,12 @@ public class ResumeMainPage extends AppCompatActivity implements NavigationView.
             Log.d(TAG," called  R.id.nav_about) ");
             Intent intent = new Intent(this, AboutActivity.class);
             startActivity(intent);
-            finish();
+
         } else if (id == R.id.nav_settings) {// Handle navigation view item clicks here.
             Log.d(TAG," called  R.id.nav_about) ");
             Intent intent = new Intent(this, AboutPreferenceActivity.class);
             startActivity(intent);
-            finish();
+
         }
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);

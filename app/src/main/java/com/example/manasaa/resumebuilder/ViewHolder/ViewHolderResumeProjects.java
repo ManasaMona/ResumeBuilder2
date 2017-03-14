@@ -18,10 +18,12 @@ import java.util.ArrayList;
  */
 
 public class ViewHolderResumeProjects extends ArrayAdapter<Project> {
-    TextView project_name,project_role,project_summary;
+    private TextView project_name,project_role,project_summary;
+    private ArrayList<Project> projectsList;
 
     public ViewHolderResumeProjects(Context context, ArrayList<Project> projects) {
         super(context, 0, projects);
+        projectsList = projects;
     }
 
     @Override
@@ -43,5 +45,10 @@ public class ViewHolderResumeProjects extends ArrayAdapter<Project> {
         // Return the completed view to render on screen
         return convertView;
 
+    }
+
+    public void updateListOfItems(ArrayList<Project> projectsList){
+            this.projectsList =projectsList;
+            notifyDataSetChanged();
     }
 }

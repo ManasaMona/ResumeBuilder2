@@ -6,6 +6,9 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.Preference;
 import android.preference.PreferenceFragment;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.AppCompatDelegate;
+import android.support.v7.widget.Toolbar;
 
 import com.example.manasaa.resumebuilder.Activity.AboutActivity;
 import com.example.manasaa.resumebuilder.Activity.MainActivity;
@@ -17,11 +20,15 @@ import com.example.manasaa.resumebuilder.R;
 
 public  class MyPreferenceFragment extends PreferenceFragment
 {
+
     @Override
     public void onCreate(final Bundle savedInstanceState)
     {
-        super.onCreate(savedInstanceState);
+        super.onCreate(savedInstanceState);;
         addPreferencesFromResource(R.xml.preferences);
+        AppCompatDelegate mDelegate = AppCompatDelegate.create(getActivity(),null);
+        ActionBar actionBar = mDelegate.getSupportActionBar();
+        actionBar.setTitle(" About ");
         Preference version = findPreference("version");
         int SDKversion=  android.os.Build.VERSION.SDK_INT;
         version.setSummary(String.format("Version: %s", SDKversion));

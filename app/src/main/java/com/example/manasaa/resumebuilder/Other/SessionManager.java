@@ -22,13 +22,13 @@ public class SessionManager {
     private static final String IS_LOGIN = "IsLoggedIn"; // All Shared Preferences Keys
     public static final String KEY_USERID = "userID"; //USER   ID
     public static final String KEY_NAME = "name"; // User name (make variable public to access from outside)
-    public static final String KEY_EMAIL = "email"; // Email address (make variable public to access from outside)
+    public static final String KEY_EMAIL = "email"; // Email address (make variable public to access fromutside)
     public static final String KEY_PROFILEURL="profile_url";  //PROFILE URL
 
     public SessionManager(Context context){ // Constructor
         Log.d(TAG, "called SessionManager(Context context)");
         this._context = context;
-        pref = _context.getSharedPreferences(PREF_NAME, PRIVATE_MODE);
+        pref = _context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE);
         editor = pref.edit();
     }
 
